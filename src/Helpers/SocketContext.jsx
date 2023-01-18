@@ -17,7 +17,7 @@ const SocketProvider = (props) => {
     wordToGuess: "",
     points: 0,
   });
-  const socket = socketIOClient('http://localhost:4000');
+  const socket = socketIOClient('https://guess-n-draw-backend.herokuapp.com/');
 
   useEffect(() => {
     return () => {
@@ -27,6 +27,10 @@ const SocketProvider = (props) => {
   }, []);
 
   useEffect(() => {
+    socket.on("waiting_list", (data) => {
+      setUsers(data);
+    });
+
     const playerEntered = ({ players }) => {
       console.log("hello from ", players, " socket context");
       setUsers(players);
@@ -66,6 +70,7 @@ const SocketProvider = (props) => {
       })
       navigate("/")
     }
+
     socket.on("player_entered", playerEntered);
     socket.on("received_word", receivedWord);
     socket.on("received_canvas", receivedCanvas);
@@ -97,14 +102,14 @@ const SocketProvider = (props) => {
         setUsers,
       }}
     >
-      <div >
-        <div>
+      <div className="state-wrapper"  >
+        <div className="state-holder">
 
 
           {users ? users.map((item, idx) => (
-            <div className="state-wrapper" key={`users-${idx + 1}`}>
+            <div key={`users-${idx + 1}`}>
 
-              <div className="state-holder"><p>Player n°{item.player}: {item.username}</p>
+              <div><p>Player n°{item.player}: {item.username}</p>
                 <p>Points: {item.points ? item.points : 0}</p>
               </div>
             </div>
