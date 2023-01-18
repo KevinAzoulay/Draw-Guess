@@ -14,6 +14,15 @@ const WelcomeBoard = (props) => {
   } = useContext(SocketContext);
   const navigate = useNavigate()
 
+  useEffect(() => {
+    socket?.on("join_game", (data) => {
+      if (data?.err) {
+        alert(data.err);
+        return;
+      }
+    });
+  }, []);
+
   const connectToGame = (gameId) => {
     let currentPlayer = { ...currentUser, player: !users.length ? 1 : 2, }
     setUsers([...users, currentPlayer])

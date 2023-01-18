@@ -20,12 +20,16 @@ const SocketProvider = (props) => {
   // const socket = socketIOClient("http://localhost:8080");
   const socket = socketIOClient("https://guess-n-draw-backend.herokuapp.com")
 
+  const handleRefresh = () => {
+    console.log('Refresh button clicked!');
+    socket.emit("exit_game", "drawnGuess")
+  }
+
   useEffect(() => {
+    window.addEventListener('beforeunload', handleRefresh);
     return () => {
-      console.log("Emitted ending the game")
-      socket.emit("exit_game", "drawnGuess")
-      navigate("/")
-    };
+      window.removeEventListener('beforeunload', cleanup);
+    }
   }, []);
 
   useEffect(() => {
@@ -91,6 +95,7 @@ const SocketProvider = (props) => {
     socket.emit(event, { player: currentUser.player, data: dataToSend });
   };
 
+
   return (
     <SocketContext.Provider
       value={{
@@ -102,6 +107,7 @@ const SocketProvider = (props) => {
         setCanvasData,
         setCurrentUser,
         setUsers,
+        resetGame
       }}
     >
       {
@@ -120,6 +126,7 @@ const SocketProvider = (props) => {
         </div>
       }
       {props.children}
+
     </SocketContext.Provider>
   );
 };
