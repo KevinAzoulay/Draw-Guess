@@ -16,7 +16,7 @@ const SocketProvider = (props) => {
     wordToGuess: "",
     points: 0,
   });
-  const socket = socketIOClient("http://localhost:4000");
+  const socket = socketIOClient(process.env.PORT);
 
   useEffect(() => {
     return () => {
