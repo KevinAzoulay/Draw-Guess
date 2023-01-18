@@ -28,7 +28,7 @@ const SocketProvider = (props) => {
   useEffect(() => {
     window.addEventListener('beforeunload', handleRefresh);
     return () => {
-      window.removeEventListener('beforeunload', cleanup);
+      window.addEventListener('beforeunload', handleRefresh);
     }
   }, []);
 
@@ -107,7 +107,7 @@ const SocketProvider = (props) => {
         setCanvasData,
         setCurrentUser,
         setUsers,
-        resetGame
+
       }}
     >
       {
