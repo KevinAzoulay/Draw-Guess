@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import io from "socket.io-client";
-import CanvasDrawing from "../../Components/MyCanvas/CanvasDrawing";
+import { useNavigate } from "react-router-dom"
 import MyCanvas from "../../Components/MyCanvas/MyCanvas";
 import { SocketContext } from "../../Helpers/SocketContext";
 

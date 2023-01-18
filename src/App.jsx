@@ -7,6 +7,9 @@ import WelcomeBoard from "./pages/WelcomeBoard/WelcomeBoard";
 import WordChoosing from "./pages/WordChoosing/WordChoosing";
 import { SocketProvider } from "./Helpers/SocketContext";
 
+
+
+
 function App() {
   return (
     <div className="App">

@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SocketContext } from "../../Helpers/SocketContext";
-// let socket;
-// const connectionPort = "localhost:4000";
+import "./WelcomeBoard.css"
 
-const WelcomeBoard = (props) => {
+
+const WelcomeBoard = () => {
   const {
     socket,
     users,
@@ -28,8 +28,9 @@ const WelcomeBoard = (props) => {
   }, [])
   return (
     <div>
-      <h1>WelcomeBoard</h1>
+      <h1>Welcome To Draw & Guess</h1>
       <input
+        className={"text-field"}
         placeholder="username"
         onChange={(e) =>
           setCurrentUser({

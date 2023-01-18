@@ -3,10 +3,7 @@ import { wordListArr } from "./constants";
 import { useNavigate } from "react-router-dom";
 import { SocketContext } from "../../Helpers/SocketContext";
 
-// let socket;
-// const connectionPort = "localhost:4000";
-
-const WordChoosing = (props) => {
+const WordChoosing = () => {
   const {
     sendData,
     currentUser,
@@ -17,7 +14,7 @@ const WordChoosing = (props) => {
 
   const handleClick = (word, currentBetPoint) => {
     setCurrentUser({ ...currentUser, wordChoosen: word, currentBetPoint })
-    sendData("send_word", {word,currentBetPoint});
+    sendData("send_word", { word, currentBetPoint });
     navigate("/draw");
   };
   useEffect(() => {

@@ -24,8 +24,8 @@ const SocketProvider = (props) => {
       navigate("/")
     };
   }, []);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     const playerEntered = ({ players }) => {
       console.log("hello from ", players, " socket context");
       setUsers(players);
@@ -70,14 +70,14 @@ const SocketProvider = (props) => {
     socket.on("received_canvas", receivedCanvas);
     socket.on("switch_context", switchContext);
     socket.on("game_ended", gameEnded)
-    return ()=>{
+    return () => {
       socket.off("player_entered", playerEntered);
       socket.off("received_word", receivedWord);
       socket.off("received_canvas", receivedCanvas);
       socket.off("switch_context", switchContext);
       socket.off("game_ended", gameEnded)
     }
-  },[currentUser])
+  }, [currentUser])
 
   const sendData = (event, dataToSend) => {
     socket.emit(event, { player: currentUser.player, data: dataToSend });
@@ -96,8 +96,16 @@ const SocketProvider = (props) => {
         setUsers,
       }}
     >
-      <p>points:{currentUser.points}</p>
-      <p>player:{currentUser.player}</p>
+      <div className="state"><p>points:{currentUser.points}</p>
+        <p>player {currentUser.player}: {currentUser.username} </p>
+
+        {users?.map((item, idx) => (
+          <div key={`users-${idx + 1}`}>
+            <p>{item.username}</p>
+            <p>{item.player}</p>
+          </div>))}
+
+      </div>
       {props.children}
     </SocketContext.Provider>
   );

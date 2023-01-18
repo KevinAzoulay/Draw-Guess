@@ -2,8 +2,8 @@ import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SocketContext } from "../../Helpers/SocketContext";
 
-const WaitingRoom = (props) => {
-  const { socket, users, currentUser } = useContext(SocketContext);
+const WaitingRoom = () => {
+  const { users, currentUser } = useContext(SocketContext);
 
   const disabled = users.length === 1;
 

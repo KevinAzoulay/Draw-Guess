@@ -3,10 +3,10 @@ import { ReactSketchCanvas } from "react-sketch-canvas";
 
 const CanvasDrawing = ({ canvasParams }) => {
   const canvasRef = useRef(null);
-  // const { canvasParams } = data;
+
 
   useEffect(() => {
-    if (canvasRef.current&&canvasParams.length) {
+    if (canvasRef.current && canvasParams.length) {
       canvasRef.current.loadPaths(canvasParams[0].paths);
     }
   }, [canvasParams]);
