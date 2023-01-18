@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import socketIOClient from "socket.io-client";
+import './SocketContext.css'
 
 const SocketContext = createContext();
 
@@ -16,7 +17,7 @@ const SocketProvider = (props) => {
     wordToGuess: "",
     points: 0,
   });
-  const socket = socketIOClient('https://guess-n-draw-backend.herokuapp.com/');
+  const socket = socketIOClient('http://localhost:4000');
 
   useEffect(() => {
     return () => {
@@ -71,11 +72,11 @@ const SocketProvider = (props) => {
     socket.on("switch_context", switchContext);
     socket.on("game_ended", gameEnded)
     return () => {
-      socket.off("player_entered", playerEntered);
-      socket.off("received_word", receivedWord);
-      socket.off("received_canvas", receivedCanvas);
-      socket.off("switch_context", switchContext);
-      socket.off("game_ended", gameEnded)
+      //   socket.off("player_entered", playerEntered);
+      //   socket.off("received_word", receivedWord);
+      //   socket.off("received_canvas", receivedCanvas);
+      //   socket.off("switch_context", switchContext);
+      //   socket.off("game_ended", gameEnded)
     }
   }, [currentUser])
 
@@ -96,15 +97,19 @@ const SocketProvider = (props) => {
         setUsers,
       }}
     >
-      <div className="state"><p>points:{currentUser.points}</p>
-        <p>player {currentUser.player}: {currentUser.username} </p>
+      <div >
+        <div>
 
-        {users?.map((item, idx) => (
-          <div key={`users-${idx + 1}`}>
-            <p>{item.username}</p>
-            <p>{item.player}</p>
-          </div>))}
 
+          {users ? users.map((item, idx) => (
+            <div className="state-wrapper" key={`users-${idx + 1}`}>
+
+              <div className="state-holder"><p>Player n°{item.player}: {item.username}</p>
+                <p>Points: {item.points ? item.points : 0}</p>
+              </div>
+            </div>
+          )) : null}
+        </div>
       </div>
       {props.children}
     </SocketContext.Provider>

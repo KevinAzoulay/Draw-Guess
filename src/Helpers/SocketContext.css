@@ -1,0 +1,41 @@
+.state-wrapper {
+
+  left: 0%;
+  top: 0%;
+  right: auto;
+  bottom: 0%;
+  margin-bottom: 0px;
+  padding-top: 30px;
+  padding-right: 48px;
+  padding-bottom: 30px;
+  padding-left: 48px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background-color: hsla(0, 0.00%, 100.00%, 1.00);
+}
+
+.state-wrapper:small {
+  padding-top: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  padding-left: 40px;
+}
+
+.state-wrapper:tiny {
+  padding-top: 20px;
+  padding-right: 16px;
+  padding-bottom: 20px;
+  padding-left: 16px;
+  box-shadow: 17px 17px 244px 0 hsla(0, 0.00%, 0.00%, 0.20);
+}
+
+.state-holder {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+}

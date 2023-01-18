@@ -23,9 +23,7 @@ const WaitingRoom = () => {
   }, [])
   return (
     <div>
-      <h1>WaitingRoom</h1>
-      <h1>{currentUser.username}</h1>
-      <h1>{currentUser.player}</h1>
+      <h1>Waiting for Player {currentUser.player === 1 ? 2 : 1}</h1>
       <div>
         {users.map((item, idx) => (
           <div key={`users-${idx + 1}`}>
