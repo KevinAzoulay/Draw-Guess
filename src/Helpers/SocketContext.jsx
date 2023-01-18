@@ -30,9 +30,9 @@ const SocketProvider = (props) => {
 
   useEffect(() => {
 
-    socket.on("join_game", (data) => {
-      setUsers(data);
-    });
+    // socket.on("join_game", (data) => {
+    //   setUsers(data);
+    // });
 
     const playerEntered = ({ players }) => {
       console.log("hello from ", players, " socket context");
