@@ -2,9 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 
 const MyCanvas = ({ canvasArr = [] }) => {
   const canvas = useRef(null);
-
-
-
   useEffect(() => {
     if (canvas.current) {
       const ctx = canvas?.current?.getContext("2d");
