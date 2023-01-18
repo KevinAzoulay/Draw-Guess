@@ -32,8 +32,12 @@
     color: #24006d;
     font-size: 1rem;
     line-height: 2.1963rem;
-    text-align: left;
+    text-align: center;
     letter-spacing: 0.3rem;
+    border-top-color: hsl(0deg 0% 100%);
+    border-right-color: hsl(0deg 0% 100%);
+    border-left-color: hsl(0deg 0% 100%);
+    border-bottom-color:#24006d
 }
 
 p{
@@ -71,7 +75,6 @@ line-height:40px;
 }
 h1{
     
-  max-width: 990px;
   margin-top: 0px;
   margin-bottom: 10px;
   font-size: 60px;
@@ -93,15 +96,16 @@ h1{
 }
 
 .formtoplay {
+    border: 1px solid #24006D;
   margin-bottom: 0px;
   padding-top: 30px;
   padding-right: 48px;
   padding-bottom: 30px;
   padding-left: 48px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-top-left-radius: 1px;
+  border-top-right-radius: 1px;
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 1px;
   background-color: hsla(0, 0.00%, 100.00%, 1.00);
 }
 

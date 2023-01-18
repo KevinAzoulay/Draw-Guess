@@ -24,7 +24,8 @@ const WordChoosing = () => {
   }, [])
   return (
     <div>
-      <h1>It's your turn to </h1>
+      <h1>Choose a Word </h1>
+      <p>And try to draw it. If you opponent guess it correctly, he will get the points accordingly to the difficulty you choose.</p>
       <div>
         {wordListArr?.map((item, idx) => (
           <div

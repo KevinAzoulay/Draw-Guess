@@ -1,0 +1,15 @@
+.button-gradient {
+  width: 100%;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-image: linear-gradient(to right, hsla(272.85714285714283, 75.00%, 67.06%, 1.00) 20%, hsla(355.9006211180124, 100.00%, 68.43%, 1.00) 60%, hsla(18.461538461538456, 100.00%, 66.86%, 1.00) 80%, hsla(31.000000000000004, 100.00%, 64.71%, 1.00) 90%);
+    color: #24006d;
+  font-size: 18px;
+  line-height: 156%;
+  font-weight: 600;
+}

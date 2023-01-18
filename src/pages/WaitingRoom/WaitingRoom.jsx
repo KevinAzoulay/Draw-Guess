@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { SocketContext } from "../../Helpers/SocketContext";
-
+import "./WaitingRoom.css"
 const WaitingRoom = () => {
   const { users, currentUser } = useContext(SocketContext);
 
@@ -24,14 +24,7 @@ const WaitingRoom = () => {
   return (
     <div>
       <h1>Waiting for Player {currentUser.player === 1 ? 2 : 1}</h1>
-      <div>
-        {users.map((item, idx) => (
-          <div key={`users-${idx + 1}`}>
-            <div>{item.username}</div>
-            <div>{item.player}</div>
-          </div>
-        ))}
-      </div>
+      <p>As soon as both players a set, you would be able to hit the START button below</p>
       <button
         disabled={disabled}
         style={{

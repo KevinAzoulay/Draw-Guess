@@ -1,19 +1,17 @@
 .state-wrapper {
-
-  left: 0%;
-  top: 0%;
-  right: auto;
-  bottom: 0%;
-  margin-bottom: 0px;
-  padding-top: 30px;
-  padding-right: 48px;
-  padding-bottom: 30px;
-  padding-left: 48px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+width: auto;
+  margin-bottom: 80px;
+  padding-top: 10px;
+  padding-right: 10%;
+  padding-bottom: 10px;
+  padding-left: 10%;
+  border-top-left-radius: 1px;
+  border-top-right-radius: 1px;
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 1px;
   background-color: hsla(0, 0.00%, 100.00%, 1.00);
+      border: 1px solid #24006D;
+
 }
 
 .state-wrapper:small {
@@ -34,8 +32,10 @@
 .state-holder {
   display: grid;
   grid-auto-columns: 1fr;
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
+  grid-column-gap: 1px;
+  grid-row-gap: 5px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
+  text-align-last: left;
+  
 }

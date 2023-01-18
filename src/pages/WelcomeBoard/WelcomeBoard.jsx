@@ -4,17 +4,21 @@ import { SocketContext } from "../../Helpers/SocketContext";
 import "./WelcomeBoard.css"
 
 
-const WelcomeBoard = () => {
+const WelcomeBoard = (props) => {
   const {
     socket,
     users,
+    setUsers,
     currentUser,
     setCurrentUser
   } = useContext(SocketContext);
   const navigate = useNavigate()
 
   const connectToGame = (gameId) => {
-    socket.emit("join_game", { gameId, currentUser });
+    let currentPlayer = { ...currentUser, player: !users.length ? 1 : 2, }
+    setUsers([...users, currentPlayer])
+    setCurrentUser(currentPlayer)
+    socket.emit("join_game", { gameId, currentUser: currentPlayer });
     localStorage.setItem(
       "user",
       JSON.stringify({ username: currentUser.username })

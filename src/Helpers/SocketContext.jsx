@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import socketIOClient from "socket.io-client";
-import './SocketContext.css'
+import "./SocketContext.css"
 
 const SocketContext = createContext();
 
@@ -17,23 +17,25 @@ const SocketProvider = (props) => {
     wordToGuess: "",
     points: 0,
   });
-  const socket = socketIOClient('https://guess-n-draw-backend.herokuapp.com/');
+  const socket = socketIOClient("http://localhost:4000");
 
   useEffect(() => {
     return () => {
-      socket.emit("exit_game", "drawnGuess")
-      navigate("/")
+      // console.log("Emitted ending the game")
+      // socket.emit("exit_game", "drawnGuess")
+      // navigate("/")
     };
   }, []);
 
   useEffect(() => {
-    socket.on("waiting_list", (data) => {
+
+    socket.on("join_game", (data) => {
       setUsers(data);
     });
 
     const playerEntered = ({ players }) => {
       console.log("hello from ", players, " socket context");
-      setUsers(players);
+      setUsers([...users, players]);
     }
     const receivedWord = ({ wordToGuess, currentBetPoint }) => {
       console.log('wordToGuess :>> ', wordToGuess, currentBetPoint, currentUser);
@@ -70,20 +72,19 @@ const SocketProvider = (props) => {
       })
       navigate("/")
     }
-
     socket.on("player_entered", playerEntered);
     socket.on("received_word", receivedWord);
     socket.on("received_canvas", receivedCanvas);
     socket.on("switch_context", switchContext);
     socket.on("game_ended", gameEnded)
     return () => {
-      //   socket.off("player_entered", playerEntered);
-      //   socket.off("received_word", receivedWord);
-      //   socket.off("received_canvas", receivedCanvas);
-      //   socket.off("switch_context", switchContext);
-      //   socket.off("game_ended", gameEnded)
+      // socket.off("player_entered", playerEntered);
+      // socket.off("received_word", receivedWord);
+      // socket.off("received_canvas", receivedCanvas);
+      // socket.off("switch_context", switchContext);
+      // socket.off("game_ended", gameEnded)
     }
-  }, [currentUser])
+  }, [currentUser, users.length])
 
   const sendData = (event, dataToSend) => {
     socket.emit(event, { player: currentUser.player, data: dataToSend });
@@ -102,20 +103,21 @@ const SocketProvider = (props) => {
         setUsers,
       }}
     >
-      <div className="state-wrapper"  >
-        <div className="state-holder">
-
-
-          {users ? users.map((item, idx) => (
-            <div key={`users-${idx + 1}`}>
-
-              <div><p>Player n°{item.player}: {item.username}</p>
-                <p>Points: {item.points ? item.points : 0}</p>
+      {
+        users && users.length > 0 &&
+        <div className="state-wrapper">
+          <div className="state-holder">
+            {users.map((item, idx) => (
+              <div key={`users-${idx + 1}`}>
+                <div>
+                  <p>Player n°{item.player}: {item.username}</p>
+                  <p>Points: {item.points ? item.points : 0}</p>
+                </div>
               </div>
-            </div>
-          )) : null}
+            ))}
+          </div>
         </div>
-      </div>
+      }
       {props.children}
     </SocketContext.Provider>
   );
