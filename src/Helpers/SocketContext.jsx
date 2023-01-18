@@ -17,14 +17,14 @@ const SocketProvider = (props) => {
     wordToGuess: "",
     points: 0,
   });
-  // const socket = socketIOClient("http://localhost:4000");
-  const socket = socketIOClient("https://guess-n-draw-backend.herokuapp.com")
+  const socket = socketIOClient("http://localhost:8080");
+  // const socket = socketIOClient("https://guess-n-draw-backend.herokuapp.com")
 
   useEffect(() => {
     return () => {
-      // console.log("Emitted ending the game")
-      // socket.emit("exit_game", "drawnGuess")
-      // navigate("/")
+      console.log("Emitted ending the game")
+      socket.emit("exit_game", "drawnGuess")
+      navigate("/")
     };
   }, []);
 
@@ -79,11 +79,11 @@ const SocketProvider = (props) => {
     socket.on("switch_context", switchContext);
     socket.on("game_ended", gameEnded)
     return () => {
-      // socket.off("player_entered", playerEntered);
-      // socket.off("received_word", receivedWord);
-      // socket.off("received_canvas", receivedCanvas);
-      // socket.off("switch_context", switchContext);
-      // socket.off("game_ended", gameEnded)
+      socket.off("player_entered", playerEntered);
+      socket.off("received_word", receivedWord);
+      socket.off("received_canvas", receivedCanvas);
+      socket.off("switch_context", switchContext);
+      socket.off("game_ended", gameEnded)
     }
   }, [currentUser, users.length])
 
